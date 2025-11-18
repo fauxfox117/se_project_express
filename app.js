@@ -1,6 +1,11 @@
 const express = require("express");
 
 const mongoose = require("mongoose");
+const {
+  BAD_REQUEST,
+  NOT_FOUND,
+  INTERNAL_SERVER_ERROR,
+} = require("./utils/constants");
 
 const app = express();
 
@@ -38,7 +43,7 @@ app.use("/items", require("./routes/clothingItems"));
 
 // Backup resources
 app.use((req, res) => {
-  res.status(404).send({ message: "Resource not found" });
+  res.status(NOT_FOUND).send({ message: "Resource not found" });
 });
 
 app.listen(PORT, () => {
