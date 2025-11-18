@@ -3,7 +3,7 @@ const {
   BAD_REQUEST,
   NOT_FOUND,
   INTERNAL_SERVER_ERROR,
-} = require("../utils/constants");
+} = require("../utils/errors");
 
 const getClothingItems = (req, res) => {
   ClothingItem.find({})
