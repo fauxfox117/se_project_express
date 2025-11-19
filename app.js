@@ -21,8 +21,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use("/users", require("./routes/users"));
-app.use("/items", require("./routes/clothingItems"));
+app.use("/", require("./routes/index"));
 
 // Backup resources
 app.use((req, res) => {
