@@ -4,10 +4,18 @@ const userRouter = require("./users");
 const clothingItemsRouter = require("./clothingItems");
 const { NOT_FOUND } = require("../utils/errors");
 const auth = require("../middlewares/auth");
+const {
+  getClothingItems,
+  createClothingItem,
+  deleteClothingItem,
+  likeItem,
+  dislikeItem,
+} = require("../controllers/clothingItem");
 
 //Public Routes (no auth required)
 router.post("/signup", createUser);
 router.post("/signin", login);
+router.get("/items", getClothingItems);
 
 //GET items is public
 router.use("/items", clothingItemsRouter);
