@@ -1,9 +1,10 @@
-const ClothingItem = require("../models/clothingItem");
+const ClothingItem = require("../models/clothingItems");
 const {
   BAD_REQUEST,
   NOT_FOUND,
   INTERNAL_SERVER_ERROR,
   FORBIDDEN,
+  UNAUTHORIZED,
 } = require("../utils/errors");
 
 const getClothingItems = (req, res) => {
@@ -17,6 +18,10 @@ const getClothingItems = (req, res) => {
 };
 
 const createClothingItem = (req, res) => {
+  if (!req.user || !req.user._id) {
+    return res.status(UNAUTHORIZED).send({ message: "Authorization required" });
+  }
+
   const { name, weather, imageUrl } = req.body;
   const owner = req.user._id;
 
@@ -33,6 +38,9 @@ const createClothingItem = (req, res) => {
 };
 
 const deleteClothingItem = (req, res) => {
+  if (!req.user || !req.user._id) {
+    return res.status(UNAUTHORIZED).send({ message: "Authorization required" });
+  }
   ClothingItem.findById(req.params.itemId)
     .orFail()
     .then((item) => {
@@ -57,6 +65,9 @@ const deleteClothingItem = (req, res) => {
 };
 
 const likeItem = (req, res) => {
+  if (!req.user || !req.user._id) {
+    return res.status(UNAUTHORIZED).send({ message: "Authorization required" });
+  }
   ClothingItem.findByIdAndUpdate(
     req.params.itemId,
     { $addToSet: { likes: req.user._id } },
@@ -78,6 +89,9 @@ const likeItem = (req, res) => {
 };
 
 const dislikeItem = (req, res) => {
+  if (!req.user || !req.user._id) {
+    return res.status(UNAUTHORIZED).send({ message: "Authorization required" });
+  }
   ClothingItem.findByIdAndUpdate(
     req.params.itemId,
     { $pull: { likes: req.user._id } },
