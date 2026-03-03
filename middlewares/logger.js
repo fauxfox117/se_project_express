@@ -2,7 +2,7 @@ const winston = require("winston");
 const expressWinston = require("express-winston");
 
 // custom logger configuration
-const errorLoggergit  = winston.format.combine(
+const errorLogger = winston.format.combine(
   winston.format.timestamp(),
   winston.format.printf(
     ({ level, message, meta, timestamp }) =>
