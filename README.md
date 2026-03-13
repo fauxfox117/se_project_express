@@ -85,7 +85,9 @@ This project provides a REST API for managing users and clothing items. The API 
    npm run dev
    ```
 
-5. The server will run on `http://localhost:3001`
+5. The server will run on `http://sbolin.crabdance.com`
+
+6. The frontend repo is located at `https://github.com/fauxfox117/se_project_react`
 
 ## Scripts
 
