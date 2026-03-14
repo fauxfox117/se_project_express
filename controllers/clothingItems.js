@@ -76,31 +76,22 @@ const likeItem = (req, res, next) => {
     });
 };
 
-const dislikeItem = (req, res) => {
+const dislikeItem = (req, res, next) => {
   ClothingItem.findByIdAndUpdate(
     req.params.itemId,
     { $pull: { likes: req.user._id } },
     { new: true }
   )
     .orFail()
-    .then((item) => res.send(item));
-  const likeItem = (req, res, next) => {
-    ClothingItem.findByIdAndUpdate(
-      req.params.itemId,
-      { $addToSet: { likes: req.user._id } },
-      { new: true }
-    )
-      .orFail()
-      .then((item) => res.send(item))
-      .catch((err) => {
-        if (err.name === "DocumentNotFoundError") {
-          return next(new NotFoundError("Item not found"));
-        } else if (err.name === "CastError") {
-          return next(new BadRequestError("Invalid item ID"));
-        }
-        return next(err);
-      });
-  };
+    .then((item) => res.send(item))
+    .catch((err) => {
+      if (err.name === "DocumentNotFoundError") {
+        return next(new NotFoundError("Item not found"));
+      } else if (err.name === "CastError") {
+        return next(new BadRequestError("Invalid item ID"));
+      }
+      return next(err);
+    });
 };
 
 module.exports = {

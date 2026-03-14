@@ -15,7 +15,6 @@ module.exports = (req, res, next) => {
   try {
     payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
-    // eslint-disable-next-line no-console
     console.error(err);
     return res.status(UNAUTHORIZED).send({ message: "Invalid token" });
   }
