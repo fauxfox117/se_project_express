@@ -7,7 +7,7 @@ const {
   likeItem,
   dislikeItem,
 } = require("../controllers/clothingItems");
-const { validateCardBody, validateId, validateUser } = require("../middlewares/validation");
+const { validateCardBody, validateId } = require("../middlewares/validation");
 
 router.get("/", getClothingItems);
 router.post("/", auth, validateCardBody, createClothingItem);
