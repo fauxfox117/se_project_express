@@ -11,6 +11,7 @@ This project provides a REST API for managing users and clothing items. The API 
 - Categorize clothing by weather conditions (hot, warm, cold)
 - Like and unlike clothing items
 - View all users and clothing items
+- Video walkthrough [`https://vimeo.com/1071660590?share=copy&fl=sv&fe=ci`]
 
 ## Functionality
 
@@ -90,10 +91,7 @@ This project provides a REST API for managing users and clothing items. The API 
 The API is deployed at: `https://api.sbolin.crabdance.com`
 
 Frontend domain: `https://sbolin.crabdance.com`
-
-
-
-`https://github.com/fauxfox117/se_project_react`
+Frontend repository: `https://github.com/fauxfox117/se_project_react`
 
 ## Scripts
 
