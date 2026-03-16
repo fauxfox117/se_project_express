@@ -22,11 +22,11 @@ app.use(express.json());
 app.use(requestLogger);
 
 //Crash test route
-// app.get("/crash-test", () => {
-//   setTimeout(() => {
-//     throw new Error("Server will crash now");
-//   }, 0);
-// });
+app.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("Server will crash now");
+  }, 0);
+});
 
 // Routes
 app.use("/", routes);
@@ -34,17 +34,13 @@ app.use("/", routes);
 // Error logging
 app.use(errorLogger);
 
+// Celebrate error handling
+app.use(errors());
+
 // 404 handler
 app.use((req, res) => {
   res.status(NOT_FOUND).send({ message: "Resource not found" });
 });
 
-// Celebrate error handling
-app.use(errors());
-
 // Centralized error handling
 app.use(errorHandler);
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});

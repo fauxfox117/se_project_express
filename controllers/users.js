@@ -58,8 +58,12 @@ const login = (req, res, next) => {
 
 const getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
+    .orFail()
     .then((user) => res.send(user))
     .catch((err) => {
+      if (err.name === "DocumentNotFoundError") {
+        return next(new NotFoundError("User not found"));
+      }
       if (err.name === "CastError") {
         return next(new BadRequestError("Invalid user ID"));
       }
@@ -75,6 +79,7 @@ const updateUser = (req, res, next) => {
     { name, avatar },
     { new: true, runValidators: true }
   )
+    .orFail()
     .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === "ValidationError") {
