@@ -17,7 +17,16 @@ const { PORT = 3001 } = process.env;
 mongoose.connect("mongodb://127.0.0.1:27017/wtwr_db");
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://sbolin.crabdance.com",
+      "http://localhost:3000",
+      "http://localhost:3001",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(requestLogger);
 
