@@ -2,7 +2,6 @@ const router = require("express").Router();
 const auth = require("../middlewares/auth");
 const {
   createClothingItem,
-  getClothingItems,
   deleteClothingItem,
   likeItem,
   dislikeItem,
