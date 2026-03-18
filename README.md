@@ -11,7 +11,7 @@ This project provides a REST API for managing users and clothing items. The API 
 - Categorize clothing by weather conditions (hot, warm, cold)
 - Like and unlike clothing items
 - View all users and clothing items
-- Video walkthrough [`https://vimeo.com/1071660590?share=copy&fl=sv&fe=ci`]
+- Video walkthrough [`https://vimeo.com/1174828716?share=copy&fl=sv&fe=ci`]
 
 ## Functionality
 
