@@ -4,11 +4,12 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
+const { errors } = require("celebrate");
+
 const routes = require("./routes/index");
 const { NOT_FOUND } = require("./utils/errors");
 const errorHandler = require("./middlewares/error-handler");
-const { errors } = require("celebrate");
-const { requestLogger, errorLogger } = require("./middlewares/logger.js");
+const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 const app = express();
 
@@ -30,7 +31,7 @@ app.use(
 app.use(express.json());
 app.use(requestLogger);
 
-//Crash test route
+// Crash test route
 app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Server will crash now");
@@ -53,3 +54,5 @@ app.use((req, res) => {
 
 // Centralized error handling
 app.use(errorHandler);
+
+app.listen(PORT, () => {});

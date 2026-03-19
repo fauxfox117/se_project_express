@@ -1,10 +1,4 @@
 const ClothingItem = require("../models/clothingItems");
-const {
-  BAD_REQUEST,
-  NOT_FOUND,
-  INTERNAL_SERVER_ERROR,
-  FORBIDDEN,
-} = require("../utils/errors");
 
 const BadRequestError = require("../errors/bad-request-err");
 const NotFoundError = require("../errors/not-found-err");
@@ -51,7 +45,8 @@ const deleteClothingItem = (req, res, next) => {
     .catch((err) => {
       if (err.name === "DocumentNotFoundError") {
         return next(new NotFoundError("Item not found"));
-      } else if (err.name === "CastError") {
+      }
+      if (err.name === "CastError") {
         return next(new BadRequestError("Invalid item ID"));
       }
       return next(err);
@@ -69,7 +64,8 @@ const likeItem = (req, res, next) => {
     .catch((err) => {
       if (err.name === "DocumentNotFoundError") {
         return next(new NotFoundError("Item not found"));
-      } else if (err.name === "CastError") {
+      }
+      if (err.name === "CastError") {
         return next(new BadRequestError("Invalid item ID"));
       }
       return next(err);
@@ -87,7 +83,8 @@ const dislikeItem = (req, res, next) => {
     .catch((err) => {
       if (err.name === "DocumentNotFoundError") {
         return next(new NotFoundError("Item not found"));
-      } else if (err.name === "CastError") {
+      }
+      if (err.name === "CastError") {
         return next(new BadRequestError("Invalid item ID"));
       }
       return next(err);
